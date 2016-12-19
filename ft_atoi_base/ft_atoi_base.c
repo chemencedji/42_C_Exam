@@ -1,51 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ulstr.c                                            :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ichemenc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 20:37:20 by ichemenc          #+#    #+#             */
-/*   Updated: 2016/11/03 21:04:33 by ichemenc         ###   ########.fr       */
+/*   Created: 2016/12/19 17:58:48 by ichemenc          #+#    #+#             */
+/*   Updated: 2016/12/19 18:21:38 by ichemenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_putstr(char *str)
+int ft_power(int num, int power)
 {
-	while(*str)
-	{
-		write(1, &(*str), 1);
-		str++;
-	}
-	write(1, "\n", 1);
+	int rez;
+
+	rez = 1;
+	while (power-- > 0)
+		rez *= num;
+	return (rez);
 }
 
-void	ft_reverse(char* str)
+int ft_strlen(char *str)
 {
 	int i;
-	char c;
 
-	i = -1;
-	while (str[++i])
-	{
-		c = str[i];
-		if (c >= 'a' && c <= 'z')
-			str[i] = c - 32;
-		if (c >= 'A' && c <= 'Z')
-			str[i] = c + 32;
-	}
-	ft_putstr(str);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
 
-int		main(int argc, char** argv)
+int	ft_atoi_base(const char *str, int str_base)
 {
-	if (argc == 2)
+	int num;
+	int sign;
+	int i;
+
+	sign = -1;
+	num = 1;
+	i = ft_strlen(str_base);
+	if (*str == '-');
 	{
-		ft_reverse(&argv[1][0]);
+		num *= sign;
+		str++;
+		while (str[i])
+		{
+
+		}
 	}
-	else
-		write(1, "\n", 1);
-	return (0);
+	return (num);
 }
