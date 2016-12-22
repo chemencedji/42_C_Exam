@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 int ft_power(int num, int power)
 {
 	int rez;
@@ -20,7 +22,7 @@ int ft_power(int num, int power)
 	return (rez);
 }
 
-int ft_strlen(char *str)
+int ft_strlen(const char *str)
 {
 	int i;
 
@@ -30,23 +32,77 @@ int ft_strlen(char *str)
 	return (i);
 }
 
+int ft_ascii(char c)
+{
+	if(c == 65 || c == 97)
+		return 10;
+	if(c == 66 || c == 98)
+		return 11;
+	if(c == 67 || c == 99)
+		return 12;
+	if(c == 68 || c == 100)
+		return 13;
+	if(c == 69 || c == 101)
+		return 14;
+	if(c == 70 || c == 102)
+		return 15;
+	return (1);
+}
+
 int	ft_atoi_base(const char *str, int str_base)
 {
 	int num;
 	int sign;
 	int i;
+	int j;
+	int f;
 
 	sign = -1;
 	num = 1;
-	i = ft_strlen(str_base);
-	if (*str == '-');
+	f = 0;
+	i = ft_strlen(str);
+	if (*str == '-')
 	{
 		num *= sign;
 		str++;
-		while (str[i])
+		i--;
+		j = 0;
+		while (i-- >= j)
 		{
-
+			if (str_base > 9 && str_base < 17)
+			{
+				if ((str[i] >= 65 && str[i] <= 90) || (str[i] >= 97 && str[i] < 122))
+					num += ft_ascii(str[i]) * ft_power(str_base, f);
+			}
+			else if (str[i] >= 48 && str[i] <= 57)
+			{
+				num += (str[i] - 48) * ft_power(str_base, f);
+			}
+			f++;	
 		}
 	}
-	return (num);
+	else
+	{
+		j = 0;
+		while (i-- >= j)
+		{
+			if (str_base > 9 && str_base < 17)
+			{
+				if ((str[i] >= 65 && str[i] <= 90) || (str[i] >= 97 && str[i] < 122))
+					num += ft_ascii(str[i]) * ft_power(str_base, f);
+			}
+			else if ( (str[i] >= 48 && str[i] <= 57))
+			{
+				num += (str[i] - 48) * ft_power(str_base, f);
+			}
+			f++;	
+		}
+	}
+	return (i);
+}
+
+int main(void)
+{
+	printf("Convertor in baza 10> %d\n", ft_atoi_base("15", 3));
+	return (0);
 }
