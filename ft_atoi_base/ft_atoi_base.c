@@ -52,22 +52,20 @@ int ft_ascii(char c)
 int	ft_atoi_base(const char *str, int str_base)
 {
 	int num;
-	int sign;
+	int flag;
 	int i;
 	int j;
 	int f;
 
-	sign = -1;
-	num = 1;
+	flag = 0;
+	num = 0;
 	f = 0;
 	i = ft_strlen(str);
 	if (*str == '-')
 	{
-		num *= sign;
-		str++;
-		i--;
-		j = 0;
-		while (i-- >= j)
+		flag = 1;
+		j = 1;
+		while (i-- > j)
 		{
 			if (str_base > 9 && str_base < 17)
 			{
@@ -84,7 +82,7 @@ int	ft_atoi_base(const char *str, int str_base)
 	else
 	{
 		j = 0;
-		while (i-- >= j)
+		while (i-- > j)
 		{
 			if (str_base > 9 && str_base < 17)
 			{
@@ -98,11 +96,14 @@ int	ft_atoi_base(const char *str, int str_base)
 			f++;	
 		}
 	}
-	return (i);
+	if (flag == 0)
+		return (num);
+	else
+		return (num * (-1));
 }
 
 int main(void)
 {
-	printf("Convertor in baza 10> %d\n", ft_atoi_base("15", 3));
+	printf("Convertor in baza 10> %d\n", ft_atoi_base("-Abcd", 16));
 	return (0);
 }
