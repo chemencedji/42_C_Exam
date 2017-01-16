@@ -17,7 +17,7 @@ static int  ft_check2(char **str, int i, char cr)
     int a = 0;
     int b = 0;
     int c = 0;
-    while (i >= 0 || (*str)[i] == cr)
+    while (i >= 0)
     {
         if ((*str)[i] == 40)
             a++;
@@ -31,6 +31,8 @@ static int  ft_check2(char **str, int i, char cr)
             c++;
         if ((*str)[i] == 125)
             c--;
+        if ((*str)[i] == cr)
+            break ;
         i--;
     }
     if (a == 0 && b == 0 && c == 0)
@@ -42,15 +44,14 @@ static int  ft_check2(char **str, int i, char cr)
 static void ft_check(char **str)
 {
 
-    int i = -1;
-    int j;
+    int i = 0;
     int a = 0;
     int b = 0;
     int c = 0;
 
-    while ((*str)[++i] != '\0')
+    while ((*str)[i] != '\0')
     {
-        if ((*str)[i] == 40)
+        if ((*str)[i] == '(')
             a++;
         if ((*str)[i] == 41)
         {
@@ -61,7 +62,7 @@ static void ft_check(char **str)
                     return ;
                 }
         }
-        if ((*str)[i] == 91)
+        if ((*str)[i] == '[')
             b++;
         if ((*str)[i] == 93)
         {
@@ -72,7 +73,7 @@ static void ft_check(char **str)
                 return ;
             }
         }
-        if ((*str)[i] == 123)
+        if ((*str)[i] == '{')
             c++;
         if ((*str)[i] == 125)
         {
@@ -83,6 +84,7 @@ static void ft_check(char **str)
                 return ;
             }
         }
+        i++;
     }
     if (a == 0 && b == 0 && c == 0)
         ft_print(1);
