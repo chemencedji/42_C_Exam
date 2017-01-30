@@ -12,11 +12,17 @@ static void ft_print(int a)
 
 }
 
-static int  ft_check2(char **str, int i, char cr)
+static int  ft_check2(char **str, int i, char cr, int t)
 {
     int a = 0;
     int b = 0;
     int c = 0;
+    int j = 0;
+    int o = -1;
+    
+    j = i;
+    if(t > 0)
+        t--;
     while (i >= 0)
     {
         if ((*str)[i] == 40)
@@ -31,8 +37,15 @@ static int  ft_check2(char **str, int i, char cr)
             c++;
         if ((*str)[i] == 125)
             c--;
-        if ((*str)[i] == cr)
-            break ;
+        if((*str)[i] == cr)
+        {
+            if (a == 0 && b == 0 && c == 0)
+                break ;
+            else if (t == 0)
+                break ;
+            else
+                t--;
+        }
         i--;
     }
     if (a == 0 && b == 0 && c == 0)
@@ -44,47 +57,59 @@ static int  ft_check2(char **str, int i, char cr)
 static void ft_check(char **str)
 {
 
-    int i = 0;
+    int i = -1;
+    int j;
     int a = 0;
+    int at = 0;
     int b = 0;
+    int bt = 0;
     int c = 0;
+    int ct = 0;
 
-    while ((*str)[i] != '\0')
+    while ((*str)[++i] != '\0')
     {
-        if ((*str)[i] == '(')
+        if ((*str)[i] == 40)
+        {
             a++;
+            at++;
+        }
         if ((*str)[i] == 41)
         {
             a--;
-            if ( 1 == (ft_check2(str, i, '(')))
+            if ( 1 == (ft_check2(str, i, '(', at)))
                 {
                     ft_print(0);
                     return ;
                 }
         }
-        if ((*str)[i] == '[')
+        if ((*str)[i] == 91)
+        {
             b++;
+            bt++;
+        }
         if ((*str)[i] == 93)
         {
             b--;
-            if ( 1 == (ft_check2(str, i, '[')))
+            if ( 1 == (ft_check2(str, i, '[', bt)))
             {   
                 ft_print(0);
                 return ;
             }
         }
-        if ((*str)[i] == '{')
+        if ((*str)[i] == 123)
+        {
             c++;
+            ct++;
+        }
         if ((*str)[i] == 125)
         {
             c--;
-            if ( 1 == (ft_check2(str, i, '{')))
+            if ( 1 == (ft_check2(str, i, '{', ct)))
             {   
                 ft_print(0);
                 return ;
             }
         }
-        i++;
     }
     if (a == 0 && b == 0 && c == 0)
         ft_print(1);
