@@ -17,10 +17,7 @@ static int  ft_check2(char **str, int i, char cr, int t)
     int a = 0;
     int b = 0;
     int c = 0;
-    int j = 0;
-    int o = -1;
-    
-    j = i;
+
     if(t > 0)
         t--;
     while (i >= 0)
@@ -58,7 +55,6 @@ static void ft_check(char **str)
 {
 
     int i = -1;
-    int j;
     int a = 0;
     int at = 0;
     int b = 0;
