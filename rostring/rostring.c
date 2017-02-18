@@ -58,7 +58,7 @@ void    rostring(char *str)
 	   i++;
     while(str[i] != ' ' && str[i] != '\t' && str[i] != '\0')
     {
-        if(str[i + 1] == ' ' || str[i + 1] == '\0')
+        if(str[i + 1] == ' ' || str[i + 1] == '\0' || str[i + 1] == '\t')
         {
             j = len - z;
              if(!(j - 1 < 0))
